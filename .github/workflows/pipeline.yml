@@ -19,6 +19,9 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '16'
+
+      - name: test commit
+        run: echo "${{ contains(join(github.event.*.message), "#skip")}}"
           
       - name: Install dependencies 
         run: npm install
