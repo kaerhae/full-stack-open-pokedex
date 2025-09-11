@@ -4,4 +4,4 @@ echo "Build script"
 
 npm run build
 
-npm run build:run
+npm run start-prod
