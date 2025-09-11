@@ -44,6 +44,7 @@ jobs:
         if: github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
   
   tag_release:
+      if: github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
       needs: [simple_deployment_pipeline]
       runs-on: ubuntu-latest
       steps:
@@ -52,4 +53,4 @@ jobs:
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             DEFAULT_BUMP: patch
-          if: github.event_name == 'push' && !contains(join(github.event.commits.*.message), '#skip')
+          
