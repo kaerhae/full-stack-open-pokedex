@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize]
 
 env:
-  SKIP_CONDITION: ${{ contains(join( ${{ toJson(github.event.commits.*.message) }} ), "#skip") }}
+  SKIP_CONDITION: ${{ contains(join(github.event.*.message), '#skip') }}
 
 jobs:
   simple_deployment_pipeline:
