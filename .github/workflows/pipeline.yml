@@ -8,6 +8,8 @@ on:
     branches: [main]
     types: [opened, synchronize]
 
+env:
+  CONDITION: ${{ contains('#skip'
 
 jobs:
   simple_deployment_pipeline:
@@ -17,6 +19,11 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '16'
+
+      - name: commit messages
+        env:
+          COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
+        run: echo "$COMMIT_MESSAGES"
           
       - name: Install dependencies 
         run: npm install
